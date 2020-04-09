@@ -15,6 +15,8 @@ services:
       - BUNDLE_PATH=/bundle_cache
       - GEM_HOME=/bundle_cache
       - GEM_PATH=/bundle_cache
+      - DATABASE_HOST=db
+      - DATABASE_USERNAME=postgres
   db:
     image: postgres:10.3-alpine
   bundle_cache:
