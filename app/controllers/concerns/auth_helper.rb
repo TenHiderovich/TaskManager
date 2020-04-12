@@ -1,4 +1,6 @@
 module AuthHelper
+  extend ActiveSupport::Concern
+
   def sign_in(user)
     session[:user_id] = user.id
   end

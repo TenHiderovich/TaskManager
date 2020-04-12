@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root :to => "web/board#show"
+  root :to => "web/boards#show"
 
   scope module: :web do
     resource :board, only: :show
