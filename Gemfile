@@ -48,14 +48,14 @@ group :test do
 end
 
 gem 'bcrypt', '~> 3.1.7'
+gem 'jquery-rails'
+gem 'less-rails' # Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem 'simple_form'
+gem 'slim-rails'
 gem 'state_machines'
 gem 'state_machines-activerecord'
-gem "slim-rails"
-gem "therubyracer"
-gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
-gem "twitter-bootstrap-rails"
-gem "jquery-rails"
+gem 'therubyracer'
+gem 'twitter-bootstrap-rails'
 
 group :development, :test do
   gem 'factory_bot_rails'

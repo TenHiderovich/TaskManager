@@ -9,4 +9,3 @@ FactoryBot.define do
     "string#{n}"
   end
 end
-
