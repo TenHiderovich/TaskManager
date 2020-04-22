@@ -2,11 +2,18 @@
 
 FactoryBot.define do
   factory :task do
-    name { generate :string }
-    description { generate :string }
-    author_id { 1 }
-    assignee_id { 1 }
-    state { generate :string }
-    expired_at { '2020-04-09' }
+    name
+    description
+    author { nil }
+    assignee { nil }
+    expired_at
+
+    trait :author do
+      association :author, factory :manager
+    end
+
+    trait :assignee do
+      association :assignee, factory :developer
+    end
   end
 end
