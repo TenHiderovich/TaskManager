@@ -2,11 +2,11 @@
 
 class Web::SessionsController < Web::ApplicationController
   def new
-    @session = Session.new
+    @session = SessionForm.new
   end
 
   def create
-    @session = Session.new(session_params)
+    @session = SessionForm.new(session_params)
 
     if @session.valid?
       sign_in @session.user
@@ -24,6 +24,6 @@ class Web::SessionsController < Web::ApplicationController
   private
 
   def session_params
-    params.require(:session).permit(:email, :password)
+    params.require(:session_form).permit(:email, :password)
   end
 end

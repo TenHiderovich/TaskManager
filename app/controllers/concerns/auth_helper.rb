@@ -1,6 +1,4 @@
 module AuthHelper
-  extend ActiveSupport::Concern
-
   def sign_in(user)
     session[:user_id] = user.id
   end
@@ -19,6 +17,6 @@ module AuthHelper
 
   def current_user
     return if session[:user_id].blank?
-    @_current_user ||= User.find_by(id: session[:user_id])
+    @_current_user ||= User.find(session[:user_id])
   end
 end
