@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -48,13 +46,14 @@ group :test do
 end
 
 gem 'bcrypt', '~> 3.1.7'
-gem 'jquery-rails'
-gem 'less-rails' # Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem 'simple_form'
-gem 'slim-rails'
 gem 'state_machines'
 gem 'state_machines-activerecord'
-gem 'therubyracer'
+gem "slim-rails"
+gem 'kaminari'
+gem 'ransack', github: 'activerecord-hackery/ransack'
+gem 'responders'
+gem 'active_model_serializers'
 
 group :development, :test do
   gem 'factory_bot_rails'

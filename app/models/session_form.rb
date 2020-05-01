@@ -1,4 +1,4 @@
-class Session
+class SessionForm
   include ActiveModel::Model
 
   attr_accessor(
