@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -45,15 +47,15 @@ group :test do
   gem 'webdrivers'
 end
 
+gem 'active_model_serializers'
 gem 'bcrypt', '~> 3.1.7'
-gem 'simple_form'
-gem 'state_machines'
-gem 'state_machines-activerecord'
-gem "slim-rails"
 gem 'kaminari'
 gem 'ransack', github: 'activerecord-hackery/ransack'
 gem 'responders'
-gem 'active_model_serializers'
+gem 'simple_form'
+gem 'slim-rails'
+gem 'state_machines'
+gem 'state_machines-activerecord'
 
 group :development, :test do
   gem 'factory_bot_rails'
