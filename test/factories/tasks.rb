@@ -9,11 +9,11 @@ FactoryBot.define do
     expired_at
 
     trait :author do
-      association :author, factory :manager
+      association :author, factory: :manager
     end
 
     trait :assignee do
-      association :assignee, factory :developer
+      association :assignee, factory: :developer
     end
   end
 end
