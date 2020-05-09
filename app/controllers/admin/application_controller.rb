@@ -1,8 +1,12 @@
+# frozen_string_literal: true
+
 class Admin::ApplicationController < ApplicationController
   before_action :authenticate_user!, :authorize
 
   def authorize
-    render(:file => File.join(Rails.root, 'public/403.html'), :status => 403, :layout => false) if (forbidden?)
+    if forbidden?
+      render(file: File.join(Rails.root, 'public/403.html'), status: 403, layout: false)
+    end
   end
 
   def forbidden?
