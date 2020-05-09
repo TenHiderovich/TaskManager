@@ -8,15 +8,15 @@ FactoryBot.define do
     email
     avatar
 
-    trait :developer do
+    factory :developer do
       type { 'Developer' }
     end
 
-    trait :manager do
+    factory :manager do
       type { 'Manager' }
     end
 
-    trait :admin do
+    factory :admin do
       type { 'Admin' }
     end
   end
