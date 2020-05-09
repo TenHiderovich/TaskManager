@@ -13,8 +13,5 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
   include FactoryBot::Syntax::Methods
-<<<<<<< HEAD
-=======
   include AuthHelper
->>>>>>> authorization
 end

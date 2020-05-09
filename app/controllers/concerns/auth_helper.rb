@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 # frozen_string_literal: true
 
-=======
->>>>>>> authorization
 module AuthHelper
   def sign_in(user)
     session[:user_id] = user.id
@@ -22,10 +19,6 @@ module AuthHelper
 
   def current_user
     return if session[:user_id].blank?
-<<<<<<< HEAD
-
-=======
->>>>>>> authorization
     @_current_user ||= User.find(session[:user_id])
   end
 end
