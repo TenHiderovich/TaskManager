@@ -1,9 +1,7 @@
-.container
-  .row
-    .col-lg-3
-      h3 Log in
-      = simple_form_for @session, url: session_path do |f|
-        = f.input :email
-        = f.input :password
-        = f.button :submit, "Sign in"
-
+h4 Log in
+= simple_form_for @session, url: session_path do |f|
+  p
+    = f.input :email
+    = f.input :password
+  p
+    = f.button  :submit, "Sign in"

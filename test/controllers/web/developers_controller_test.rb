@@ -1,14 +1,15 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
-class Web::DevelopersControllerTest < ActionDispatch::IntegrationTest
-  test "should get new" do
-    get new_developer_url
+class Web::DevelopersControllerTest < ActionController::TestCase
+  test 'should get new' do
+    get :new
     assert_response :success
   end
 
-  test "should post create" do
-    post developers_url, params: { developer: attributes_for(:developer) }
+  test 'should post create' do
+    post :create, params: { developer: attributes_for(:developer) }
     assert_response :redirect
   end
-
 end
