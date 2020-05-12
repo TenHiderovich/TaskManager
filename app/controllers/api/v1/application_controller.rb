@@ -28,5 +28,5 @@ class Api::V1::ApplicationController < ApplicationController
 
   def self.responder
     JsonResponder
-  enda
+  end
 end
