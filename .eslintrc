@@ -1,25 +1,20 @@
 {
     "parser": "babel-eslint",
     "extends": ["airbnb", "prettier", "prettier/react"],
-
     "env": {
         "browser": true,
         "node": true,
         "es6": true
     },
-
     "plugins": ["react", "filenames", "prettier"],
-
     "globals": {
         "gon": true,
         "__CLIENT__": true,
         "__SERVER__": true
     },
-
     "settings": {
-        "import/extensions": [".js", ".jsx"],
+        "import/extensions": [".js", ".jsx"]
     },
-
     "rules": {
         "prettier/prettier": [2, {
             "singleQuote": true,
@@ -48,7 +43,7 @@
         "react/prop-types": [2, {
             "ignore": ["classes", "match", "dictionaries", "errors", "history", "children", "location"]
         }],
-        "no-debugger": 1,
+        "no-debugger": "warn",
         "react/destructuring-assignment": 0,
         "react/static-property-placement": 0
     }
