@@ -3,6 +3,7 @@ import KanbanBoard from '@lourenci/react-kanban';
 import { propOr } from 'ramda';
 
 import Task from '../Task';
+import ColumnHeader from '../ColumnHeader';
 import TasksRepository from 'repositories/TasksRepository';
 
 const STATES = [
@@ -16,19 +17,17 @@ const STATES = [
 ];
 
 const initialBoard = {
-  columns: STATES.map(column => ({
+  columns: STATES.map((column) => ({
     id: column.key,
     title: column.value,
     cards: [],
     meta: {},
-  }))
+  })),
 };
 
 const TaskBoard = () => {
   const [board, setBoard] = useState(initialBoard);
   const [boardCards, setBoardCards] = useState([]);
-  useEffect(() => loadBoard(), []);
-  useEffect(() => generateBoard(), [boardCards]);
 
   const loadColumn = (state, page, perPage) => {
     return TasksRepository.index({
@@ -49,6 +48,24 @@ const TaskBoard = () => {
     });
   };
 
+  const loadBoard = () => {
+    STATES.map(({ key }) => loadColumnInitial(key));
+  };
+
+  const loadColumnMore = (state, page = 1, perPage = 10) => {
+    loadColumn(state, page, perPage).then(({ data }) => {
+      setBoardCards((prevState) => {
+        return {
+          ...prevState,
+          [state]: {
+            cards: [...prevState[state].cards, ...data.items], 
+            meta: data.meta
+          },
+        };
+      });
+    });
+  };
+
   const generateBoard = () => {
     const board = {
       columns: STATES.map(({ key, value }) => {
@@ -57,18 +74,24 @@ const TaskBoard = () => {
           title: value,
           cards: propOr({}, 'cards', boardCards[key]),
           meta: propOr({}, 'meta', boardCards[key]),
-        }
-      })
-    }
+        };
+      }),
+    };
 
     setBoard(board);
-  }
-
-  const loadBoard = () => {
-    STATES.map(({ key }) => loadColumnInitial(key));
   };
 
-  return <KanbanBoard renderCard={card => <Task task={card} />}>{board}</KanbanBoard>;
+  useEffect(() => loadBoard(), []);
+  useEffect(() => generateBoard(), [boardCards]);
+
+  return (
+    <KanbanBoard
+      renderColumnHeader={(column) => <ColumnHeader column={column} onLoadMore={loadColumnMore} />}
+      renderCard={(card) => <Task task={card} />}
+    >
+      {board}
+    </KanbanBoard>
+  );
 };
 
 export default TaskBoard;
