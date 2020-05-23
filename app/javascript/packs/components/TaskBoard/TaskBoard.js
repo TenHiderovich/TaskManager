@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import KanbanBoard from '@lourenci/react-kanban';
 import { propOr } from 'ramda';
 
-import Task from 'components/Task';
+import Task from '../Task';
 import TasksRepository from 'repositories/TasksRepository';
 
 const STATES = [
