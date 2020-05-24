@@ -5,6 +5,7 @@ import { propOr } from 'ramda';
 import Task from '../Task';
 import ColumnHeader from '../ColumnHeader';
 import AddPopup from '../AddPopup';
+import EditPopup from '../EditPopup';
 import TaskForm from 'forms/TaskForm';
 import TasksRepository from 'repositories/TasksRepository';
 
@@ -35,6 +36,7 @@ const initialBoard = {
 const MODES = {
   ADD: 'add',
   NONE: 'none',
+  EDIT: 'edit',
 };
 
 const TaskBoard = () => {
@@ -42,6 +44,7 @@ const TaskBoard = () => {
   const [board, setBoard] = useState(initialBoard);
   const [boardCards, setBoardCards] = useState([]);
   const [mode, setMode] = useState(MODES.NONE);
+  const [openedTaskId, setOpenedTaskId] = useState(null);
 
   const loadColumn = (state, page, perPage) => {
     return TasksRepository.index({
@@ -69,10 +72,11 @@ const TaskBoard = () => {
   const loadColumnMore = (state, page = 1, perPage = 10) => {
     loadColumn(state, page, perPage).then(({ data }) => {
       setBoardCards((prevState) => {
+        const { cards } = prevState[state];
         return {
           ...prevState,
           [state]: {
-            cards: [...prevState[state].cards, ...data.items], 
+            cards: [...cards, ...data.items], 
             meta: data.meta
           },
         };
@@ -86,7 +90,7 @@ const TaskBoard = () => {
         return {
           id: key,
           title: value,
-          cards: propOr({}, 'cards', boardCards[key]),
+          cards: propOr([], 'cards', boardCards[key]),
           meta: propOr({}, 'meta', boardCards[key]),
         };
       }),
@@ -100,7 +104,6 @@ const TaskBoard = () => {
     if (!transition) {
       return null;
     }
-  
     return TasksRepository.update(task.id, { stateEvent: transition.event })
       .then(() => {
         loadColumnInitial(destination.toColumnId);
@@ -117,16 +120,41 @@ const TaskBoard = () => {
   
   const handleClose = () => {
     setMode(MODES.NONE);
+    // changeOpenedTask(null);
   };
 
   const handleTaskCreate = (params) => {
     const attributes = TaskForm.attributesToSubmit(params);
     return TasksRepository.create(attributes).then(({ data: { task } }) => {
-      // … loading column with task.state
+      loadColumnInitial(task.state);
       handleClose();
     });
   };
 
+  const loadTask = (id) => {
+    return TasksRepository.show(id).then(({ data: { task } }) => task);
+  };
+
+  const handleTaskUpdate = (task) => {
+    const attributes = TaskForm.attributesToSubmit(task);
+    return TasksRepository.update(task.id, attributes).then(() => {
+      loadColumnInitial(task.state);
+      handleClose();
+    });
+  };
+
+  const handleTaskDestroy = (task) => {
+    return TasksRepository.destroy(task.id).then(() => {
+      loadColumnInitial(task.state);
+      handleClose();
+    });
+  };
+
+  const handleOpenEditPopup = task => {
+    setOpenedTaskId(task.id);
+    setMode(MODES.EDIT);
+  };
+  
   useEffect(() => loadBoard(), []);
   useEffect(() => generateBoard(), [boardCards]);
 
@@ -134,13 +162,23 @@ const TaskBoard = () => {
     <>
       <KanbanBoard
         renderColumnHeader={(column) => <ColumnHeader column={column} onLoadMore={loadColumnMore} />}
-        renderCard={(card) => <Task task={card} />}
+        renderCard={(card) => <Task onClick={handleOpenEditPopup} task={card} />}
         onCardDragEnd={handleCardDragEnd}
-      >
-        {board}
-      </KanbanBoard>
+      >{board}</KanbanBoard>
       {mode === MODES.ADD && <AddPopup onCreateCard={handleTaskCreate} onClose={handleClose} />}
-      <Fab className={styles.addButton} color="primary" aria-label="add" onClick={handleOpenAddPopup}>
+      {mode === MODES.EDIT && (
+        <EditPopup 
+          onLoadCard={loadTask} 
+          onCardDestroy={handleTaskDestroy} 
+          onCardUpdate={handleTaskUpdate} 
+          onClose={handleClose} 
+          cardId={openedTaskId} /> 
+      )}
+      <Fab 
+        className={styles.addButton} 
+        color="primary" 
+        aria-label="add" 
+        onClick={handleOpenAddPopup}>
         <AddIcon />
       </Fab>
     </>
