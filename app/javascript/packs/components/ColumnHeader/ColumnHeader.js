@@ -42,10 +42,7 @@ ColumnHeader.propTypes = {
   column: PropTypes.shape({
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    cards: PropTypes.oneOfType([
-      PropTypes.object,
-      PropTypes.array,
-    ]).isRequired,
+    cards: PropTypes.array.isRequired,
     meta: PropTypes.shape({
       totalCount: PropTypes.number,
       currentPage: PropTypes.number,
