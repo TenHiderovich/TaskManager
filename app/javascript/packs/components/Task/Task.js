@@ -13,7 +13,7 @@ import useStyles from './useStyles';
 const Task = ({ task, onClick }) => {
   const styles = useStyles();
 
-  const handleClick = () => onClick(task); 
+  const handleClick = () => onClick(task);
 
   return (
     <Card className={styles.root}>

@@ -15,3 +15,6 @@ lint:
 
 lint-fix:
 	docker-compose run --rm web bash -c "yarn lint --fix"
+
+tests:
+	docker-compose run --rm web bash -c "rails test"
