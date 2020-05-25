@@ -104,7 +104,7 @@ const TaskBoard = () => {
     if (!transition) {
       return null;
     }
-    
+
     return TasksRepository.update(task.id, { ...task, stateEvent: transition.event })
       .then(() => {
         loadColumnInitial(destination.toColumnId);
@@ -123,8 +123,8 @@ const TaskBoard = () => {
     setMode(MODES.NONE);
   };
 
-  const handleTaskCreate = (task) => {
-    const attributes = TaskForm.attributesToSubmit(task);
+  const handleTaskCreate = (params) => {
+    const attributes = TaskForm.attributesToSubmit(params);
     return TasksRepository.create(attributes).then(({ data: { task } }) => {
       loadColumnInitial(task.state);
       handleClose();
