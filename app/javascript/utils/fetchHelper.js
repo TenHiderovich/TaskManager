@@ -59,7 +59,6 @@ export default {
   },
 
   delete(url) {
-    // const body = decamelize(json);
     return axios.delete(url);
   },
 };

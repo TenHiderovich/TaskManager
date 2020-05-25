@@ -37,7 +37,6 @@ const ColumnHeader = ({ column, onLoadMore }) => {
 };
 
 ColumnHeader.propTypes = {
-  styles: PropTypes.object,
   onLoadMore: PropTypes.func.isRequired,
   column: PropTypes.shape({
     id: PropTypes.string.isRequired,

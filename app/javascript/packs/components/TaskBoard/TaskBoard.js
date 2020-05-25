@@ -76,8 +76,8 @@ const TaskBoard = () => {
         return {
           ...prevState,
           [state]: {
-            cards: [...cards, ...data.items], 
-            meta: data.meta
+            cards: [...cards, ...data.items],
+            meta: data.meta,
           },
         };
       });
@@ -85,7 +85,7 @@ const TaskBoard = () => {
   };
 
   const generateBoard = () => {
-    const board = {
+    const newBoard = {
       columns: STATES.map(({ key, value }) => {
         return {
           id: key,
@@ -96,7 +96,7 @@ const TaskBoard = () => {
       }),
     };
 
-    setBoard(board);
+    setBoard(newBoard);
   };
 
   const handleCardDragEnd = (task, source, destination) => {
@@ -104,7 +104,8 @@ const TaskBoard = () => {
     if (!transition) {
       return null;
     }
-    return TasksRepository.update(task.id, { stateEvent: transition.event })
+    
+    return TasksRepository.update(task.id, { ...task, stateEvent: transition.event })
       .then(() => {
         loadColumnInitial(destination.toColumnId);
         loadColumnInitial(source.fromColumnId);
@@ -117,14 +118,13 @@ const TaskBoard = () => {
   const handleOpenAddPopup = () => {
     setMode(MODES.ADD);
   };
-  
+
   const handleClose = () => {
     setMode(MODES.NONE);
-    // changeOpenedTask(null);
   };
 
-  const handleTaskCreate = (params) => {
-    const attributes = TaskForm.attributesToSubmit(params);
+  const handleTaskCreate = (task) => {
+    const attributes = TaskForm.attributesToSubmit(task);
     return TasksRepository.create(attributes).then(({ data: { task } }) => {
       loadColumnInitial(task.state);
       handleClose();
@@ -150,11 +150,11 @@ const TaskBoard = () => {
     });
   };
 
-  const handleOpenEditPopup = task => {
+  const handleOpenEditPopup = (task) => {
     setOpenedTaskId(task.id);
     setMode(MODES.EDIT);
   };
-  
+
   useEffect(() => loadBoard(), []);
   useEffect(() => generateBoard(), [boardCards]);
 
@@ -164,21 +164,20 @@ const TaskBoard = () => {
         renderColumnHeader={(column) => <ColumnHeader column={column} onLoadMore={loadColumnMore} />}
         renderCard={(card) => <Task onClick={handleOpenEditPopup} task={card} />}
         onCardDragEnd={handleCardDragEnd}
-      >{board}</KanbanBoard>
+      >
+        {board}
+      </KanbanBoard>
       {mode === MODES.ADD && <AddPopup onCreateCard={handleTaskCreate} onClose={handleClose} />}
       {mode === MODES.EDIT && (
-        <EditPopup 
-          onLoadCard={loadTask} 
-          onCardDestroy={handleTaskDestroy} 
-          onCardUpdate={handleTaskUpdate} 
-          onClose={handleClose} 
-          cardId={openedTaskId} /> 
+        <EditPopup
+          onLoadCard={loadTask}
+          onCardDestroy={handleTaskDestroy}
+          onCardUpdate={handleTaskUpdate}
+          onClose={handleClose}
+          cardId={openedTaskId}
+        />
       )}
-      <Fab 
-        className={styles.addButton} 
-        color="primary" 
-        aria-label="add" 
-        onClick={handleOpenAddPopup}>
+      <Fab className={styles.addButton} color="primary" aria-label="add" onClick={handleOpenAddPopup}>
         <AddIcon />
       </Fab>
     </>
