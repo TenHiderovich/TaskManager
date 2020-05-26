@@ -116,7 +116,6 @@ const TaskBoard = () => {
   };
 
   const handleOpenAddPopup = () => {
-    setOpenedTaskId(task.id);
     setMode(MODES.ADD);
   };
 
