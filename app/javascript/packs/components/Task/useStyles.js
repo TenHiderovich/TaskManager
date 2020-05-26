@@ -5,11 +5,6 @@ const useStyles = makeStyles(() => ({
     width: 250,
     position: 'relative',
   },
-  actions: {
-    position: 'absolute',
-    top: 0,
-    right: 0,
-  },
 }));
 
 export default useStyles;

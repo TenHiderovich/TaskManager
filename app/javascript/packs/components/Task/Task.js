@@ -14,15 +14,15 @@ const Task = ({ task, onClick }) => {
   const styles = useStyles();
 
   const handleClick = () => onClick(task);
+  const action = (
+    <IconButton onClick={handleClick}>
+      <EditIcon />
+    </IconButton>
+  );
 
   return (
     <Card className={styles.root}>
-      <CardHeader title={task.name} />
-      <div className={styles.actions}>
-        <IconButton aria-label="Edit" onClick={handleClick}>
-          <EditIcon fontSize="small" />
-        </IconButton>
-      </div>
+      <CardHeader  action={action} title={task.name} />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
           {task.description}
