@@ -52,7 +52,7 @@ Based on Rails 6.0.2.2 routes of TaskManager::Application
   Utils = {
     configuration: {
       prefix: "",
-      default_url_options: {"format":"json"},
+      default_url_options: {},
       special_options_key: "_options",
       serializer: null
     },
@@ -491,6 +491,12 @@ Based on Rails 6.0.2.2 routes of TaskManager::Application
     make: function() {
       var routes;
       routes = {
+// admin_user => /admin/users/:id(.:format)
+  // function(id, options)
+  adminUserPath: Utils.route([["id",true],["format",false]], {}, [2,[7,"/",false],[2,[6,"admin",false],[2,[7,"/",false],[2,[6,"users",false],[2,[7,"/",false],[2,[3,"id",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]),
+// admin_users => /admin/users(.:format)
+  // function(options)
+  adminUsersPath: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"admin",false],[2,[7,"/",false],[2,[6,"users",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]),
 // api_v1_task => /api/v1/tasks/:id(.:format)
   // function(id, options)
   apiV1TaskPath: Utils.route([["id",true],["format",false]], {}, [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"v1",false],[2,[7,"/",false],[2,[6,"tasks",false],[2,[7,"/",false],[2,[3,"id",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]]]),
@@ -499,7 +505,88 @@ Based on Rails 6.0.2.2 routes of TaskManager::Application
   apiV1TasksPath: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"v1",false],[2,[7,"/",false],[2,[6,"tasks",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]),
 // api_v1_tasks_show => /api/v1/tasks/show(.:format)
   // function(options)
-  apiV1TasksShowPath: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"v1",false],[2,[7,"/",false],[2,[6,"tasks",false],[2,[7,"/",false],[2,[6,"show",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]]])}
+  apiV1TasksShowPath: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"v1",false],[2,[7,"/",false],[2,[6,"tasks",false],[2,[7,"/",false],[2,[6,"show",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]]]),
+// board => /board(.:format)
+  // function(options)
+  boardPath: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"board",false],[1,[2,[8,".",false],[3,"format",false]],false]]]),
+// developers => /developers(.:format)
+  // function(options)
+  developersPath: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"developers",false],[1,[2,[8,".",false],[3,"format",false]],false]]]),
+// edit_admin_user => /admin/users/:id/edit(.:format)
+  // function(id, options)
+  editAdminUserPath: Utils.route([["id",true],["format",false]], {}, [2,[7,"/",false],[2,[6,"admin",false],[2,[7,"/",false],[2,[6,"users",false],[2,[7,"/",false],[2,[3,"id",false],[2,[7,"/",false],[2,[6,"edit",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]]]),
+// edit_rails_conductor_inbound_email => /rails/conductor/action_mailbox/inbound_emails/:id/edit(.:format)
+  // function(id, options)
+  editRailsConductorInboundEmailPath: Utils.route([["id",true],["format",false]], {}, [2,[7,"/",false],[2,[6,"rails",false],[2,[7,"/",false],[2,[6,"conductor",false],[2,[7,"/",false],[2,[6,"action_mailbox",false],[2,[7,"/",false],[2,[6,"inbound_emails",false],[2,[7,"/",false],[2,[3,"id",false],[2,[7,"/",false],[2,[6,"edit",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]]]]]]]),
+// new_admin_user => /admin/users/new(.:format)
+  // function(options)
+  newAdminUserPath: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"admin",false],[2,[7,"/",false],[2,[6,"users",false],[2,[7,"/",false],[2,[6,"new",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]),
+// new_developer => /developers/new(.:format)
+  // function(options)
+  newDeveloperPath: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"developers",false],[2,[7,"/",false],[2,[6,"new",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]),
+// new_rails_conductor_inbound_email => /rails/conductor/action_mailbox/inbound_emails/new(.:format)
+  // function(options)
+  newRailsConductorInboundEmailPath: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"rails",false],[2,[7,"/",false],[2,[6,"conductor",false],[2,[7,"/",false],[2,[6,"action_mailbox",false],[2,[7,"/",false],[2,[6,"inbound_emails",false],[2,[7,"/",false],[2,[6,"new",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]]]]]),
+// new_session => /session/new(.:format)
+  // function(options)
+  newSessionPath: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"session",false],[2,[7,"/",false],[2,[6,"new",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]),
+// rails_blob_representation => /rails/active_storage/representations/:signed_blob_id/:variation_key/*filename(.:format)
+  // function(signed_blob_id, variation_key, filename, options)
+  railsBlobRepresentationPath: Utils.route([["signed_blob_id",true],["variation_key",true],["filename",true],["format",false]], {}, [2,[7,"/",false],[2,[6,"rails",false],[2,[7,"/",false],[2,[6,"active_storage",false],[2,[7,"/",false],[2,[6,"representations",false],[2,[7,"/",false],[2,[3,"signed_blob_id",false],[2,[7,"/",false],[2,[3,"variation_key",false],[2,[7,"/",false],[2,[5,[3,"filename",false],false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]]]]]]]),
+// rails_conductor_inbound_email => /rails/conductor/action_mailbox/inbound_emails/:id(.:format)
+  // function(id, options)
+  railsConductorInboundEmailPath: Utils.route([["id",true],["format",false]], {}, [2,[7,"/",false],[2,[6,"rails",false],[2,[7,"/",false],[2,[6,"conductor",false],[2,[7,"/",false],[2,[6,"action_mailbox",false],[2,[7,"/",false],[2,[6,"inbound_emails",false],[2,[7,"/",false],[2,[3,"id",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]]]]]),
+// rails_conductor_inbound_email_reroute => /rails/conductor/action_mailbox/:inbound_email_id/reroute(.:format)
+  // function(inbound_email_id, options)
+  railsConductorInboundEmailReroutePath: Utils.route([["inbound_email_id",true],["format",false]], {}, [2,[7,"/",false],[2,[6,"rails",false],[2,[7,"/",false],[2,[6,"conductor",false],[2,[7,"/",false],[2,[6,"action_mailbox",false],[2,[7,"/",false],[2,[3,"inbound_email_id",false],[2,[7,"/",false],[2,[6,"reroute",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]]]]]),
+// rails_conductor_inbound_emails => /rails/conductor/action_mailbox/inbound_emails(.:format)
+  // function(options)
+  railsConductorInboundEmailsPath: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"rails",false],[2,[7,"/",false],[2,[6,"conductor",false],[2,[7,"/",false],[2,[6,"action_mailbox",false],[2,[7,"/",false],[2,[6,"inbound_emails",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]]]),
+// rails_direct_uploads => /rails/active_storage/direct_uploads(.:format)
+  // function(options)
+  railsDirectUploadsPath: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"rails",false],[2,[7,"/",false],[2,[6,"active_storage",false],[2,[7,"/",false],[2,[6,"direct_uploads",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]),
+// rails_disk_service => /rails/active_storage/disk/:encoded_key/*filename(.:format)
+  // function(encoded_key, filename, options)
+  railsDiskServicePath: Utils.route([["encoded_key",true],["filename",true],["format",false]], {}, [2,[7,"/",false],[2,[6,"rails",false],[2,[7,"/",false],[2,[6,"active_storage",false],[2,[7,"/",false],[2,[6,"disk",false],[2,[7,"/",false],[2,[3,"encoded_key",false],[2,[7,"/",false],[2,[5,[3,"filename",false],false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]]]]]),
+// rails_info => /rails/info(.:format)
+  // function(options)
+  railsInfoPath: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"rails",false],[2,[7,"/",false],[2,[6,"info",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]),
+// rails_info_properties => /rails/info/properties(.:format)
+  // function(options)
+  railsInfoPropertiesPath: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"rails",false],[2,[7,"/",false],[2,[6,"info",false],[2,[7,"/",false],[2,[6,"properties",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]),
+// rails_info_routes => /rails/info/routes(.:format)
+  // function(options)
+  railsInfoRoutesPath: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"rails",false],[2,[7,"/",false],[2,[6,"info",false],[2,[7,"/",false],[2,[6,"routes",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]),
+// rails_mailers => /rails/mailers(.:format)
+  // function(options)
+  railsMailersPath: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"rails",false],[2,[7,"/",false],[2,[6,"mailers",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]),
+// rails_mailgun_inbound_emails => /rails/action_mailbox/mailgun/inbound_emails/mime(.:format)
+  // function(options)
+  railsMailgunInboundEmailsPath: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"rails",false],[2,[7,"/",false],[2,[6,"action_mailbox",false],[2,[7,"/",false],[2,[6,"mailgun",false],[2,[7,"/",false],[2,[6,"inbound_emails",false],[2,[7,"/",false],[2,[6,"mime",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]]]]]),
+// rails_mandrill_inbound_emails => /rails/action_mailbox/mandrill/inbound_emails(.:format)
+  // function(options)
+  railsMandrillInboundEmailsPath: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"rails",false],[2,[7,"/",false],[2,[6,"action_mailbox",false],[2,[7,"/",false],[2,[6,"mandrill",false],[2,[7,"/",false],[2,[6,"inbound_emails",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]]]),
+// rails_postmark_inbound_emails => /rails/action_mailbox/postmark/inbound_emails(.:format)
+  // function(options)
+  railsPostmarkInboundEmailsPath: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"rails",false],[2,[7,"/",false],[2,[6,"action_mailbox",false],[2,[7,"/",false],[2,[6,"postmark",false],[2,[7,"/",false],[2,[6,"inbound_emails",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]]]),
+// rails_relay_inbound_emails => /rails/action_mailbox/relay/inbound_emails(.:format)
+  // function(options)
+  railsRelayInboundEmailsPath: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"rails",false],[2,[7,"/",false],[2,[6,"action_mailbox",false],[2,[7,"/",false],[2,[6,"relay",false],[2,[7,"/",false],[2,[6,"inbound_emails",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]]]),
+// rails_sendgrid_inbound_emails => /rails/action_mailbox/sendgrid/inbound_emails(.:format)
+  // function(options)
+  railsSendgridInboundEmailsPath: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"rails",false],[2,[7,"/",false],[2,[6,"action_mailbox",false],[2,[7,"/",false],[2,[6,"sendgrid",false],[2,[7,"/",false],[2,[6,"inbound_emails",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]]]),
+// rails_service_blob => /rails/active_storage/blobs/:signed_id/*filename(.:format)
+  // function(signed_id, filename, options)
+  railsServiceBlobPath: Utils.route([["signed_id",true],["filename",true],["format",false]], {}, [2,[7,"/",false],[2,[6,"rails",false],[2,[7,"/",false],[2,[6,"active_storage",false],[2,[7,"/",false],[2,[6,"blobs",false],[2,[7,"/",false],[2,[3,"signed_id",false],[2,[7,"/",false],[2,[5,[3,"filename",false],false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]]]]]),
+// root => /
+  // function(options)
+  rootPath: Utils.route([], {}, [7,"/",false]),
+// session => /session(.:format)
+  // function(options)
+  sessionPath: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"session",false],[1,[2,[8,".",false],[3,"format",false]],false]]]),
+// update_rails_disk_service => /rails/active_storage/disk/:encoded_token(.:format)
+  // function(encoded_token, options)
+  updateRailsDiskServicePath: Utils.route([["encoded_token",true],["format",false]], {}, [2,[7,"/",false],[2,[6,"rails",false],[2,[7,"/",false],[2,[6,"active_storage",false],[2,[7,"/",false],[2,[6,"disk",false],[2,[7,"/",false],[2,[3,"encoded_token",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]]])}
 ;
       routes.configure = function(config) {
         return Utils.configure(config);
@@ -509,14 +596,14 @@ Based on Rails 6.0.2.2 routes of TaskManager::Application
       };
       Object.defineProperty(routes, 'defaults', {
         get: function() {
-          throw new Error("ApiRoutes" + ".defaults is removed. Use " + "ApiRoutes" + ".configure() instead.");
+          throw new Error("Routes" + ".defaults is removed. Use " + "Routes" + ".configure() instead.");
         },
         set: function(value) {}
       });
       routes.default_serializer = function(object, prefix) {
         return Utils.default_serializer(object, prefix);
       };
-      return Utils.namespace(root, "ApiRoutes", routes);
+      return Utils.namespace(root, "Routes", routes);
     }
   };
 
