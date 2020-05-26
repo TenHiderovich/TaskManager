@@ -10,13 +10,14 @@ function authenticityToken() {
 
 function headers() {
   return {
-    Accept: '*/*',
+    'Accept': '*/*',
     'Content-Type': 'application/json',
     'X-CSRF-Token': authenticityToken(),
     'X-Requested-With': 'XMLHttpRequest',
   };
 }
 
+axios.defaults.headers.get = headers();
 axios.defaults.headers.post = headers();
 axios.defaults.headers.put = headers();
 axios.defaults.headers.delete = headers();
