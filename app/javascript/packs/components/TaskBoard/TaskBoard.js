@@ -104,8 +104,8 @@ const TaskBoard = () => {
     if (!transition) {
       return null;
     }
-
-    return TasksRepository.update(task.id, { ...task, stateEvent: transition.event })
+    
+    return TasksRepository.update(task.id, { stateEvent: transition.event })
       .then(() => {
         loadColumnInitial(destination.toColumnId);
         loadColumnInitial(source.fromColumnId);
@@ -135,9 +135,9 @@ const TaskBoard = () => {
     return TasksRepository.show(id).then(({ data: { task } }) => task);
   };
 
-  const handleTaskUpdate = (task) => {
-    const attributes = TaskForm.attributesToSubmit(task);
-    return TasksRepository.update(task.id, attributes).then(() => {
+  const handleTaskUpdate = (params) => {
+    const attributes = TaskForm.attributesToSubmit(params);
+    return TasksRepository.update(params.id, attributes).then(({ data: { task } }) => {
       loadColumnInitial(task.state);
       handleClose();
     });
