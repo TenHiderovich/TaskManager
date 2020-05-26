@@ -7,7 +7,7 @@ bash:
 rubocop:
 	docker-compose run --rm web bash -c "rubocop"
 
-rubocopa-a:
+rubocop-a:
 	docker-compose run --rm web bash -c "rubocop -a"
 
 lint:
