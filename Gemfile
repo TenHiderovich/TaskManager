@@ -49,6 +49,7 @@ end
 
 gem 'active_model_serializers'
 gem 'bcrypt', '~> 3.1.7'
+gem 'js-routes'
 gem 'kaminari'
 gem 'ransack', github: 'activerecord-hackery/ransack'
 gem 'responders'
@@ -57,7 +58,6 @@ gem 'slim-rails'
 gem 'state_machines'
 gem 'state_machines-activerecord'
 gem 'webpacker-react'
-gem 'js-routes'
 
 group :development, :test do
   gem 'factory_bot_rails'

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class JsonResponder < ActionController::Responder
   def api_behavior(*args, &block)
     if post?

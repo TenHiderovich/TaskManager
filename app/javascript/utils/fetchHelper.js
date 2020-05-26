@@ -10,7 +10,7 @@ function authenticityToken() {
 
 function headers() {
   return {
-    'Accept': '*/*',
+    Accept: '*/*',
     'Content-Type': 'application/json',
     'X-CSRF-Token': authenticityToken(),
     'X-Requested-With': 'XMLHttpRequest',
