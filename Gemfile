@@ -56,6 +56,7 @@ gem 'simple_form'
 gem 'slim-rails'
 gem 'state_machines'
 gem 'state_machines-activerecord'
+gem 'webpacker-react'
 
 group :development, :test do
   gem 'factory_bot_rails'
