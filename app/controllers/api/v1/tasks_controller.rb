@@ -14,31 +14,31 @@ class Api::V1::TasksController < Api::V1::ApplicationController
   end
 
   def show
-    @task = Task.find(params[:id])
+    task = Task.find(params[:id])
 
-    respond_with(@task, serializer: TaskSerializer)
+    respond_with(task, serializer: TaskSerializer)
   end
 
   def create
-    @task = current_user.my_tasks.new(task_params)
-    @task[:author_id] ||= current_user[:id]
-    @task.save
+    task = current_user.my_tasks.new(task_params)
+    task[:author_id] ||= current_user[:id]
+    task.save
 
-    respond_with(@task, serializer: TaskSerializer, location: nil)
+    respond_with(task, serializer: TaskSerializer, location: nil)
   end
 
   def update
-    @task = Task.find(params[:id])
-    @task.update(task_params)
+    task = Task.find(params[:id])
+    task.update(task_params)
 
-    respond_with(@task, serializer: TaskSerializer)
+    respond_with(task, serializer: TaskSerializer)
   end
 
   def destroy
-    @task = Task.find(params[:id])
-    @task.destroy
+    task = Task.find(params[:id])
+    task.destroy
 
-    respond_with(@task)
+    respond_with(task)
   end
 
   private
