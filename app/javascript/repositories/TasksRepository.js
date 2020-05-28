@@ -12,12 +12,12 @@ export default {
     return FetchHelper.get(path);
   },
 
-  create(task = {}) {
+  create(task) {
     const path = routes.apiV1TasksPath();
     return FetchHelper.post(path, task);
   },
 
-  update(id, task = {}) {
+  update(id, task) {
     const path = routes.apiV1TaskPath(id);
     return FetchHelper.put(path, task);
   },

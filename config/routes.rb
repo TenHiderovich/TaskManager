@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  namespace :api do
+    namespace :v1 do
+      get 'tasks/show'
+    end
+  end
   root to: 'web/boards#show'
   scope module: :web do
     resource :board, only: :show
@@ -15,7 +20,6 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :tasks, only: %i[index show create update destroy]
-      get 'tasks/show'
     end
   end
 end
