@@ -1,15 +1,16 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class Api::V1::TasksControllerTest < ActionController::TestCase
-
-  test "should get show" do
+  test 'should get show' do
     author = create :user
     task = create :task, author: author
     get :show, params: { id: task.id, format: :json }
     assert_response :success
   end
 
-  test "should get index" do
+  test 'should get index' do
     get :index, params: { format: :json }
     assert_response :success
   end
@@ -19,7 +20,7 @@ class Api::V1::TasksControllerTest < ActionController::TestCase
     sign_in(author)
     assignee = create :user
     task_attributes = attributes_for(:task)
-      .merge({ assignee_id: assignee.id })
+                      .merge({ assignee_id: assignee.id })
     post :create, params: { task: task_attributes, format: :json }
     assert_response :created
 
@@ -35,9 +36,8 @@ class Api::V1::TasksControllerTest < ActionController::TestCase
     assignee = create :user
     task = create :task, author: author
     task_attributes = attributes_for(:task)
-      .merge({ author_id: author.id, assignee_id: assignee.id })
-      .stringify_keys
-
+                      .merge({ author_id: author.id, assignee_id: assignee.id })
+                      .stringify_keys
     patch :update, params: { id: task.id, format: :json, task: task_attributes }
     assert_response :success
 
@@ -53,5 +53,4 @@ class Api::V1::TasksControllerTest < ActionController::TestCase
 
     assert !Task.where(id: task.id).exists?
   end
-
 end

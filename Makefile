@@ -7,7 +7,7 @@ bash:
 rubocop:
 	docker-compose run --rm web bash -c "rubocop"
 
-rubocopa-a:
+rubocop-a:
 	docker-compose run --rm web bash -c "rubocop -a"
 
 lint:
@@ -15,3 +15,6 @@ lint:
 
 lint-fix:
 	docker-compose run --rm web bash -c "yarn lint --fix"
+
+tests:
+	docker-compose run --rm web bash -c "rails test"
