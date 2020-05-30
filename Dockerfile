@@ -1,6 +1,6 @@
 FROM ruby:2.7.1-alpine
 
-ARG RAILS_ROOT=/
+ARG RAILS_ROOT=/app
 ARG PACKAGES="vim openssl-dev postgresql-dev build-base curl nodejs yarn less tzdata git postgresql-client bash screen"
 
 RUN apk update \
@@ -12,10 +12,10 @@ RUN gem install bundler:2.1.4
 RUN mkdir $RAILS_ROOT
 WORKDIR $RAILS_ROOT
 
-COPY Gemfile Gemfile.lock  ./
+COPY Gemfile Gemfile.lock $RAILS_ROOT
 RUN bundle install --jobs 5
 
-COPY package.json yarn.lock ./
+COPY package.json yarn.lock $RAILS_ROOT
 RUN yarn install --frozen-lockfile
 
 ADD . $RAILS_ROOT
