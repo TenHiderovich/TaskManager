@@ -506,6 +506,12 @@ Based on Rails 6.0.2.2 routes of TaskManager::Application
 // api_v1_tasks_show => /api/v1/tasks/show(.:format)
   // function(options)
   apiV1TasksShowPath: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"v1",false],[2,[7,"/",false],[2,[6,"tasks",false],[2,[7,"/",false],[2,[6,"show",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]]]),
+// api_v1_user => /api/v1/users/:id(.:format)
+  // function(id, options)
+  apiV1UserPath: Utils.route([["id",true],["format",false]], {}, [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"v1",false],[2,[7,"/",false],[2,[6,"users",false],[2,[7,"/",false],[2,[3,"id",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]]]),
+// api_v1_users => /api/v1/users(.:format)
+  // function(options)
+  apiV1UsersPath: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"v1",false],[2,[7,"/",false],[2,[6,"users",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]),
 // board => /board(.:format)
   // function(options)
   boardPath: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"board",false],[1,[2,[8,".",false],[3,"format",false]],false]]]),
