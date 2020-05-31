@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { prop, keys, forEach, pipe, forEachObjIndexed } from 'ramda';
 
 export default class PropTypesPresenter {
-  constructor(propTypes, methods) {
+  constructor(propTypes, methods = {}) {
     this.ownPropTypes = propTypes;
 
     pipe(

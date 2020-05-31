@@ -20,7 +20,7 @@ const Form = ({ errors, onChange, task }) => {
         error={has('name', errors)}
         helperText={errors.name}
         onChange={handleChangeTextField('name')}
-        value={TaskPresenter.getName(task)}
+        value={TaskPresenter.name(task)}
         label="Name"
         required
         margin="dense"
@@ -29,7 +29,7 @@ const Form = ({ errors, onChange, task }) => {
         error={has('description', errors)}
         helperText={errors.description}
         onChange={handleChangeTextField('description')}
-        value={TaskPresenter.getDescription(task)}
+        value={TaskPresenter.description(task)}
         label="Description"
         required
         multiline
@@ -37,7 +37,7 @@ const Form = ({ errors, onChange, task }) => {
       />
       <UserSelect
         label="Author"
-        value={TaskPresenter.getAuthor(task)}
+        value={TaskPresenter.author(task)}
         onChange={handleChangeSelect('author')}
         isRequired
         error={has('author', errors)}
