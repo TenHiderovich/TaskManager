@@ -32,3 +32,4 @@ yarn-debug.log*
 /vendor/cache
 
 .DS_Store
+echo "coverage" >> .gitignore
