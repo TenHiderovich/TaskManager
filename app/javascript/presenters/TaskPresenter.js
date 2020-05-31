@@ -8,15 +8,5 @@ export default new PropTypesPresenter(
     description: PropTypes.string,
     author: PropTypes.shape(),
   },
-  {
-    getName(task) {
-      return this.name(task);
-    },
-    getDescription(task) {
-      return this.description(task);
-    },
-    getAuthor(task) {
-      return this.author(task);
-    },
-  },
+  {},
 );
