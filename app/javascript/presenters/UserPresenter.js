@@ -11,5 +11,11 @@ export default new PropTypesPresenter(
     fullName(user) {
       return `${this.firstName(user)} ${this.lastName(user)}`;
     },
+    getFirstName(user) {
+      return this.firstName(user);
+    },
+    getLastName(user) {
+      return this.lastName(user);
+    },
   },
 );
