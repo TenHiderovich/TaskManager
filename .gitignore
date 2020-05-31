@@ -32,5 +32,3 @@ yarn-debug.log*
 /vendor/cache
 
 .DS_Store
-coverage
-.coveralls.yml
