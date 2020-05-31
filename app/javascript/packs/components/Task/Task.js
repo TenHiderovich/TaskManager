@@ -24,10 +24,10 @@ const Task = ({ task, onClick }) => {
 
   return (
     <Card className={styles.root}>
-      <CardHeader action={action} title={TaskPresenter.name(task)} />
+      <CardHeader action={action} title={TaskPresenter.getName(task)} />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          {TaskPresenter.description(task)}
+          {TaskPresenter.getDescription(task)}
         </Typography>
       </CardContent>
     </Card>
