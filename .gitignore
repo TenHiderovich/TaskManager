@@ -33,3 +33,4 @@ yarn-debug.log*
 
 .DS_Store
 echo "coverage" >> .gitignore
+.coveralls.yml
