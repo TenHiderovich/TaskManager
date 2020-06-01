@@ -58,8 +58,8 @@ gem 'slim-rails'
 gem 'state_machines'
 gem 'state_machines-activerecord'
 gem 'webpacker-react'
-gem 'simplecov', require: true
-gem 'coveralls', require: true
+gem 'simplecov', require: false
+gem 'coveralls', require: false
 
 group :development, :test do
   gem 'factory_bot_rails'
