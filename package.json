@@ -35,10 +35,8 @@
     "react-dom": "^16.13.1",
     "react-select": "^3.1.0",
     "styled-components": "^5.1.0",
-    "webpacker-react": "^0.3.2"
-  },
-  "version": "0.1.0",
-  "devDependencies": {
+    "webpacker-react": "^0.3.2",
     "webpack-dev-server": "^3.10.3"
-  }
+  },
+  "version": "0.1.0"
 }
