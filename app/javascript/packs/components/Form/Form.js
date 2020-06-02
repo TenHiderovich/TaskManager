@@ -37,12 +37,12 @@ const Form = ({ errors, onChange, task }) => {
         margin="dense"
       />
       <UserSelect
-        label="Author"
-        value={TaskPresenter.author(task)}
-        onChange={handleChangeSelect('author')}
+        label="Assignee"
+        value={TaskPresenter.assignee(task)}
+        onChange={handleChangeSelect('assignee')}
         isRequired
-        error={has('author', errors)}
-        helperText={errors.author}
+        error={has('assignee', errors)}
+        helperText={errors.assignee}
       />
     </form>
   );

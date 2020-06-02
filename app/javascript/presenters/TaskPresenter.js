@@ -7,6 +7,7 @@ export default new PropTypesPresenter(
     name: PropTypes.string,
     description: PropTypes.string,
     author: PropTypes.shape(),
+    assignee: PropTypes.shape(),
   },
   {},
 );
