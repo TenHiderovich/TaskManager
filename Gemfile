@@ -61,7 +61,7 @@ gem 'webpacker-react'
 gem 'simplecov', require: false
 gem 'coveralls', require: false
 gem 'bullet', group: 'development'
-
+gem 'rollbar'
 
 group :development, :test do
   gem 'factory_bot_rails'
