@@ -12,6 +12,7 @@ import Modal from '@material-ui/core/Modal';
 
 import Form from '../Form';
 import TaskForm from 'forms/TaskForm';
+import Form from '../Form';
 
 import useStyles from './useStyles';
 

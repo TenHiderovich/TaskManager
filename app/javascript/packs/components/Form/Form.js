@@ -5,6 +5,7 @@ import { has } from 'ramda';
 import TextField from '@material-ui/core/TextField';
 
 import UserSelect from '../UserSelect';
+
 import TaskPresenter from 'presenters/TaskPresenter';
 
 import useStyles from './useStyles';
@@ -36,12 +37,12 @@ const Form = ({ errors, onChange, task }) => {
         margin="dense"
       />
       <UserSelect
-        label="Author"
-        value={TaskPresenter.author(task)}
-        onChange={handleChangeSelect('author')}
+        label="Assignee"
+        value={TaskPresenter.assignee(task)}
+        onChange={handleChangeSelect('assignee')}
         isRequired
-        error={has('author', errors)}
-        helperText={errors.author}
+        error={has('assignee', errors)}
+        helperText={errors.assignee}
       />
     </form>
   );
@@ -49,7 +50,7 @@ const Form = ({ errors, onChange, task }) => {
 
 Form.propTypes = {
   onChange: PropTypes.func.isRequired,
-  task: PropTypes.shape().isRequired,
+  task: TaskPresenter.shape().isRequired,
   errors: PropTypes.shape({
     name: PropTypes.arrayOf(PropTypes.string),
     description: PropTypes.arrayOf(PropTypes.string),

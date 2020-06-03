@@ -12,7 +12,7 @@ class Api::V1::UsersController < Api::V1::ApplicationController
                 .result
                 .page(page)
                 .per(per_page)
-                
+
     respond_with(users, each_serializer: UserSerializer, meta: build_meta(users), root: 'items')
   end
 end
