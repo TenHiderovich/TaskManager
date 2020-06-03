@@ -62,6 +62,7 @@ gem 'simplecov', require: false
 gem 'coveralls', require: false
 gem 'bullet', group: 'development'
 gem 'rollbar'
+gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'factory_bot_rails'
