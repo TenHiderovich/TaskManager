@@ -1,8 +1,22 @@
 # frozen_string_literal: true
+require 'coveralls'
+Coveralls.wear!
+
+require 'simplecov'
+SimpleCov.start
 
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 require 'rails/test_help'
+require 'coveralls'
+require 'simplecov' 
+# SimpleCov.start
+# Coveralls.wear!
+Coveralls.wear!('rails')
+# SimpleCov.formatter = Coveralls::SimpleCov::Formatter
+# SimpleCov.start do
+#   add_filter 'app/secrets'
+# end
 
 class ActiveSupport::TestCase
   # Run tests in parallel with specified workers

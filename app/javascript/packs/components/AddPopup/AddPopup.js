@@ -10,15 +10,17 @@ import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
 import Modal from '@material-ui/core/Modal';
 
+import Form from '../Form';
 import TaskForm from 'forms/TaskForm';
 import Form from '../Form';
 
 import useStyles from './useStyles';
 
 const AddPopup = ({ onClose, onCreateCard }) => {
-  const [task, changeTask] = useState(TaskForm.defaultAttributes());
+  const [task, setTask] = useState(TaskForm.defaultAttributes());
   const [isSaving, setSaving] = useState(false);
   const [errors, setErrors] = useState({});
+
   const handleCreate = () => {
     setSaving(true);
 
@@ -31,6 +33,7 @@ const AddPopup = ({ onClose, onCreateCard }) => {
       }
     });
   };
+
   const styles = useStyles();
 
   return (
@@ -45,7 +48,7 @@ const AddPopup = ({ onClose, onCreateCard }) => {
           title="Add New Task"
         />
         <CardContent>
-          <Form errors={errors} onChange={changeTask} task={task} />
+          <Form errors={errors} onChange={setTask} task={task} />
         </CardContent>
         <CardActions className={styles.actions}>
           <Button disabled={isSaving} onClick={handleCreate} variant="contained" size="small" color="primary">
