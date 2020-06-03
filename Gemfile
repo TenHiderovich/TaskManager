@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.0'
+ruby '2.7.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.2'
@@ -28,13 +30,13 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
 end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'web-console', '>= 3.3.0'
 end
 
 group :test do
@@ -45,15 +47,22 @@ group :test do
   gem 'webdrivers'
 end
 
+gem 'active_model_serializers'
 gem 'bcrypt', '~> 3.1.7'
+gem 'js-routes'
+gem 'kaminari'
+gem 'ransack', github: 'activerecord-hackery/ransack'
+gem 'responders'
 gem 'simple_form'
+gem 'slim-rails'
 gem 'state_machines'
 gem 'state_machines-activerecord'
-gem "slim-rails"
-gem "therubyracer"
-gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
-gem "twitter-bootstrap-rails"
-gem "jquery-rails"
+gem 'webpacker-react'
+gem 'simplecov', require: false
+gem 'coveralls', require: false
+gem 'bullet', group: 'development'
+gem 'rollbar'
+gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'factory_bot_rails'
@@ -61,4 +70,4 @@ group :development, :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

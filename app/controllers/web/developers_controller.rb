@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Web::DevelopersController < Web::ApplicationController
   def new
     @developer = Developer.new
