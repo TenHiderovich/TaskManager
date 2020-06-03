@@ -4,12 +4,14 @@ class Api::V1::TasksController < Api::V1::ApplicationController
   respond_to :json
 
   def index
-    tasks = Task.ransack(ransack_params)
+    tasks = Task
+                .includes([:assignee, :author])
+                .ransack(ransack_params)
                 .result
                 .order('created_at DESC')
                 .page(page)
                 .per(per_page)
-     
+
     respond_with(tasks, each_serializer: TaskSerializer, root: 'items', meta: build_meta(tasks))
   end
 

@@ -45,8 +45,6 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
-  gem 'simplecov', require: false
-  gem 'coveralls', require: false
 end
 
 gem 'active_model_serializers'
@@ -60,6 +58,10 @@ gem 'slim-rails'
 gem 'state_machines'
 gem 'state_machines-activerecord'
 gem 'webpacker-react'
+gem 'simplecov', require: false
+gem 'coveralls', require: false
+gem 'bullet', group: 'development'
+gem 'rollbar'
 
 group :development, :test do
   gem 'factory_bot_rails'
