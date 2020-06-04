@@ -5,7 +5,7 @@ class Api::V1::TasksController < Api::V1::ApplicationController
 
   def index
     tasks = Task
-                .includes([:assignee, :author])
+                .includes(%i[author assignee])
                 .ransack(ransack_params)
                 .result
                 .order('created_at DESC')
