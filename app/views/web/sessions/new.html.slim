@@ -3,5 +3,7 @@ h4 Log in
   p
     = f.input :email
     = f.input :password
+  P
+    = link_to "Forgot Password?", new_service_forgot_password_path
   p
-    = f.button  :submit, "Sign in"
+    = f.button :submit, "Sign in"
