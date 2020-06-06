@@ -19,4 +19,10 @@ class UserMailer < ApplicationMailer
 
     mail(from: 'noreply@taskmanager.com', to: user.email, subject: "Task #{@task.id} Destroyed")
   end
+
+  def email_checked
+    email = params[:email]
+
+    mail(from: 'noreply@taskmanager.com', to: email, subject: 'password reseted')
+  end
 end

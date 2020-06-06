@@ -23,4 +23,12 @@ class UserMailerPreview < ActionMailer::Preview
 
     UserMailer.with(params).task_destroyed
   end
+
+  def email_checked
+    user = User.first
+    email = user.email
+    params = { email: email }
+
+    UserMailer.with(params).email_checked
+  end
 end

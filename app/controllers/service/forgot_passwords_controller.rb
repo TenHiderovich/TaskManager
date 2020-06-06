@@ -9,7 +9,7 @@ class Service::ForgotPasswordsController < Service::ApplicationController
     @email = EmailForm.new(password_params)
 
     if @email.valid?
-      PasswordResetMailer.with({ email: @email }).email_checked.deliver_now
+      UserMailer.with({ email: @email }).email_checked.deliver_now
       # redirect_to email_confirmed
     else
       render :new
