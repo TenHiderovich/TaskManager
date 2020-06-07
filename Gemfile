@@ -46,8 +46,10 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
+
   gem 'coveralls', require: false
   gem 'simplecov', require: false
+
   gem 'webdrivers'
 end
 
@@ -62,6 +64,11 @@ gem 'slim-rails'
 gem 'state_machines'
 gem 'state_machines-activerecord'
 gem 'webpacker-react'
+gem 'simplecov', require: false
+gem 'coveralls', require: false
+gem 'bullet', group: 'development'
+gem 'rollbar'
+gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'factory_bot_rails'
