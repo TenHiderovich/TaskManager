@@ -18,11 +18,11 @@ class Api::V1::TasksControllerTest < ActionController::TestCase
   test 'should post create' do
     author = create :user
     sign_in(author)
-    
+
     assignee = create :user
     task_attributes = attributes_for(:task)
                       .merge({ assignee_id: assignee.id })
-                      
+
     assert_emails 1 do
       post :create, params: { task: task_attributes, format: :json }
     end
@@ -62,7 +62,7 @@ class Api::V1::TasksControllerTest < ActionController::TestCase
     assert_emails 1 do
       delete :destroy, params: { id: task.id, format: :json }
     end
-    
+
     assert_response :success
 
     assert !Task.where(id: task.id).exists?

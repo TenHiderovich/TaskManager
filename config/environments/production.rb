@@ -120,6 +120,6 @@ Rails.application.configure do
     port: ENV['MAILER_PORT'],
     domain: ENV['MAILER_DOMAIN'],
     authentication: ENV['MAILER_AUTHENTICATION'],
-    enable_starttls_auto: true,
+    enable_starttls_auto: true
   }
 end

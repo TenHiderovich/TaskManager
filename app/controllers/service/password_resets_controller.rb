@@ -54,7 +54,9 @@ class Service::PasswordResetsController < Service::ApplicationController
   end
 
   def valid_user
-    redirect_to :new_service_password_reset unless @user&.authenticated?(params[:id])
+    unless @user&.authenticated?(params[:id])
+      redirect_to :new_service_password_reset
+    end
   end
 
   def check_expiration

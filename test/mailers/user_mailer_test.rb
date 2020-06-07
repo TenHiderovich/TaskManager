@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class UserMailerTest < ActionMailer::TestCase
-  test "task created" do
+  test 'task created' do
     user = create(:user)
     task = create(:task, author: user)
     params = { user: user, task: task }
@@ -17,7 +19,7 @@ class UserMailerTest < ActionMailer::TestCase
     assert email.body.to_s.include?("Task #{task.id} was created")
   end
 
-  test "task updated" do
+  test 'task updated' do
     user = create(:user)
     task = create(:task, author: user)
     params = { user: user, task: task }
@@ -33,7 +35,7 @@ class UserMailerTest < ActionMailer::TestCase
     assert email.body.to_s.include?("Task #{task.id} was updated")
   end
 
-  test "task destroyed" do
+  test 'task destroyed' do
     user = create(:user)
     task = create(:task, author: user)
     params = { user: user, task: task }
@@ -49,7 +51,7 @@ class UserMailerTest < ActionMailer::TestCase
     assert email.body.to_s.include?("Task #{task.id} was destroyed")
   end
 
-  test "email checked" do
+  test 'email checked' do
     user = create(:user)
     email = user.email
     params = { email: email }
@@ -62,6 +64,6 @@ class UserMailerTest < ActionMailer::TestCase
     assert_equal ['noreply@taskmanager.com'], email.from
     assert_equal [user.email], email.to
     assert_equal 'password reseted', email.subject
-    assert email.body.to_s.include?("Check your email")
+    assert email.body.to_s.include?('Check your email')
   end
 end
