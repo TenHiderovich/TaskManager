@@ -17,8 +17,6 @@ class EmailForm
   private
 
   def user_valid?
-    if user.blank?
-      errors.add(:email, "email doesn't match")
-    end
+    errors.add(:email, "email doesn't match") if user.blank?
   end
 end

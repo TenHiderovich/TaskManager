@@ -16,9 +16,8 @@ Rails.application.routes.draw do
   end
 
   namespace :service do
-    resources :forgot_passwords, only: %i[new create]
-    # resources :passwords, only: %i[new create]
-  end 
+    resources :password_resets
+  end
 
   namespace :admin do
     resources :users
@@ -31,5 +30,5 @@ Rails.application.routes.draw do
     end
   end
 
-  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 end

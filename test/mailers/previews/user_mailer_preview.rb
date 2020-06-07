@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Preview all emails at http://localhost:3000/rails/mailers/user_mailer
 class UserMailerPreview < ActionMailer::Preview
   def task_created
@@ -26,8 +28,8 @@ class UserMailerPreview < ActionMailer::Preview
 
   def email_checked
     user = User.first
-    email = user.email
-    params = { email: email }
+    user.reset_token = user.new_token
+    params = { user: user }
 
     UserMailer.with(params).email_checked
   end

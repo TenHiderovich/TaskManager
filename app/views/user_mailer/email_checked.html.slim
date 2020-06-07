@@ -1,1 +1,8 @@
-| Check your email
+h1 Сброс пароля
+
+p Для сброса пароля перейдите по ссылке:
+
+p
+    = link_to "Reset password", edit_service_password_reset_url(@user.reset_token, email: @user.email)
+
+p Срок действия ссылки истекает через 24 часа.
