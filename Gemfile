@@ -65,6 +65,8 @@ gem 'state_machines'
 gem 'state_machines-activerecord'
 gem 'webpacker-react'
 
+gem 'sidekiq'
+
 group :development, :test do
   gem 'factory_bot_rails'
   gem 'rubocop'
