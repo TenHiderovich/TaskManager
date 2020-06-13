@@ -20,17 +20,17 @@ module TokenHelper
   end
 
   def create_reset_digest!
-    self.new_reset_token
-    update(:reset_digest =>  digest(reset_token), :reset_sent_at => Time.zone.now)
+    new_reset_token
+    update(reset_digest: digest(reset_token), reset_sent_at: Time.zone.now)
   end
 
   def destroy_reset_digest!
     self.reset_token = nil
-    update(:reset_digest => nil)
+    update(reset_digest: nil)
   end
 
   def authenticated_reset_token?(token)
-    digest = self.reset_digest
+    digest = reset_digest
     return false if digest.nil?
 
     BCrypt::Password.new(digest).is_password?(token)

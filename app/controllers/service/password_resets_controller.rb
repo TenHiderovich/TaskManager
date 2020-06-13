@@ -17,7 +17,7 @@ class Service::PasswordResetsController < Service::ApplicationController
       @user.create_reset_digest!
       UserMailer.with({ user: @user }).email_checked.deliver_now
     end
-     
+
     render :check_email
   end
 
@@ -38,26 +38,26 @@ class Service::PasswordResetsController < Service::ApplicationController
 
   private
 
-    def email_params
-      params.require(:email_form).permit(:email)
-    end
+  def email_params
+    params.require(:email_form).permit(:email)
+  end
 
-    def password_params
-      user_type = @user.type.downcase
-      params.require(user_type).permit(:password, :password_confirmation)
-    end
+  def password_params
+    user_type = @user.type.downcase
+    params.require(user_type).permit(:password, :password_confirmation)
+  end
 
-    def get_user
-      @user = User.find_by(email: params[:email])
-    end
+  def get_user
+    @user = User.find_by(email: params[:email])
+  end
 
-    def valid_user
-      unless @user&.authenticated_reset_token?(params[:id])
-        redirect_to :new_service_password_reset
-      end
+  def valid_user
+    unless @user&.authenticated_reset_token?(params[:id])
+      redirect_to :new_service_password_reset
     end
+  end
 
-    def check_expiration
-      redirect_to :new_service_password_reset if @user.password_reset_expired?
-    end
+  def check_expiration
+    redirect_to :new_service_password_reset if @user.password_reset_expired?
+  end
 end

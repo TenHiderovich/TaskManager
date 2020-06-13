@@ -55,20 +55,20 @@ end
 
 gem 'active_model_serializers'
 gem 'bcrypt', '~> 3.1.7'
+gem 'bullet', group: 'development'
+gem 'coveralls', require: false
 gem 'js-routes'
 gem 'kaminari'
+gem 'newrelic_rpm'
 gem 'ransack', github: 'activerecord-hackery/ransack'
 gem 'responders'
+gem 'rollbar'
 gem 'simple_form'
+gem 'simplecov', require: false
 gem 'slim-rails'
 gem 'state_machines'
 gem 'state_machines-activerecord'
 gem 'webpacker-react'
-gem 'simplecov', require: false
-gem 'coveralls', require: false
-gem 'bullet', group: 'development'
-gem 'rollbar'
-gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'factory_bot_rails'
