@@ -11,8 +11,6 @@ require_relative '../config/environment'
 require 'rails/test_help'
 require 'sidekiq/testing'
 
-# Coveralls.wear!('rails')
-
 
 class ActiveSupport::TestCase
   # Run tests in parallel with specified workers
@@ -25,4 +23,6 @@ class ActiveSupport::TestCase
   include FactoryBot::Syntax::Methods
   include AuthHelper
   include ActionMailer::TestHelper
+
+  Sidekiq::Testing.inline!
 end

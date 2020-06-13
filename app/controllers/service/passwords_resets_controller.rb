@@ -19,7 +19,7 @@ class Service::PasswordsResetsController < Service::ApplicationController
     if @email.valid?
       @user = @email.user
       @user.create_reset_digest!
-      UserMailer.with({ user: @user }).email_checked.deliver_later
+      SendEmailCheckedNotificationJob.perform_async(@user.id)
     end
 
     render :show

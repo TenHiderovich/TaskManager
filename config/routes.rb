@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
+
+  mount Sidekiq::Web => '/admin/sidekiq'
+
   namespace :api do
     namespace :v1 do
       get 'tasks/show'
@@ -29,8 +33,4 @@ Rails.application.routes.draw do
       resources :users, only: %i[index show]
     end
   end
-
-  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
-
-  mount Sidekiq::Web => '/admin/sidekiq'
 end

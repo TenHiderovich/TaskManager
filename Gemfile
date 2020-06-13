@@ -67,6 +67,7 @@ gem 'webpacker-react'
 
 gem 'sidekiq'
 gem 'sidekiq-failures'
+gem 'sidekiq-throttled'
 
 group :development, :test do
   gem 'factory_bot_rails'
