@@ -53,7 +53,7 @@ class UserMailerTest < ActionMailer::TestCase
 
   test 'email checked' do
     user = create(:user)
-    user.reset_token = user.new_token
+    user.new_reset_token
     email = user.email
 
     params = { user: user }
