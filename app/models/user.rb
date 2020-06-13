@@ -12,8 +12,11 @@ class User < ApplicationRecord
   validates :last_name, presence: true, length: { minimum: 2 }
   validates :email, presence: true, uniqueness: true, format: { with: /@/ }
 
-  def new_token
-    SecureRandom.urlsafe_base64
+  def new_reset_token
+    self.reset_token = loop do
+      token = SecureRandom.urlsafe_base64
+      break token unless User.exists?(reset_digest: token)
+    end
   end
 
   def digest(string)
@@ -23,23 +26,22 @@ class User < ApplicationRecord
   end
 
   def password_reset_expired?
-    reset_sent_at < 24.hours.ago
+    time_validity_token = 24
+    reset_sent_at < time_validity_token.hours.ago
   end
 
-  def create_reset_digest
-    self.reset_token = new_token
-    update_attribute(:reset_digest,  digest(reset_token))
-    update_attribute(:reset_sent_at, Time.zone.now)
+  def create_reset_digest!
+    self.new_reset_token
+    update(:reset_digest =>  digest(reset_token), :reset_sent_at => Time.zone.now)
   end
 
-  def destroy_reset_digest
+  def destroy_reset_digest!
     self.reset_token = nil
-    update_attribute(:reset_digest,  digest(reset_token))
-    update_attribute(:reset_sent_at, nil)
+    update(:reset_digest => nil)
   end
 
-  def authenticated?(token)
-    digest = send(:reset_digest)
+  def authenticated_reset_token?(token)
+    digest = self.reset_digest
     return false if digest.nil?
 
     BCrypt::Password.new(digest).is_password?(token)

@@ -14,20 +14,18 @@ class Service::PasswordResetsController < Service::ApplicationController
 
     if @email.valid?
       @user = @email.user
-      @user.create_reset_digest
-
+      @user.create_reset_digest!
       UserMailer.with({ user: @user }).email_checked.deliver_now
-
-      render :check_email
-    else
-      render :new
     end
+     
+    render :check_email
   end
 
   def update
-    PasswordResetForm.new(password_params)
+    p PasswordResetForm.new(password_params)
+    p @user.update(password_params)
     if @user.update(password_params)
-      @user.destroy_reset_digest
+      @user.destroy_reset_digest!
       redirect_to new_session_path
     else
       render :edit
@@ -40,26 +38,26 @@ class Service::PasswordResetsController < Service::ApplicationController
 
   private
 
-  def email_params
-    params.require(:email_form).permit(:email)
-  end
-
-  def password_params
-    user_type = @user.type.downcase
-    params.require(user_type).permit(:password, :password_confirmation)
-  end
-
-  def get_user
-    @user = User.find_by(email: params[:email])
-  end
-
-  def valid_user
-    unless @user&.authenticated?(params[:id])
-      redirect_to :new_service_password_reset
+    def email_params
+      params.require(:email_form).permit(:email)
     end
-  end
 
-  def check_expiration
-    redirect_to :new_service_password_reset if @user.password_reset_expired?
-  end
+    def password_params
+      user_type = @user.type.downcase
+      params.require(user_type).permit(:password, :password_confirmation)
+    end
+
+    def get_user
+      @user = User.find_by(email: params[:email])
+    end
+
+    def valid_user
+      unless @user&.authenticated_reset_token?(params[:id])
+        redirect_to :new_service_password_reset
+      end
+    end
+
+    def check_expiration
+      redirect_to :new_service_password_reset if @user.password_reset_expired?
+    end
 end
