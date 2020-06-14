@@ -18,12 +18,11 @@ class Service::PasswordResetsController < Service::ApplicationController
       UserMailer.with({ user: @user }).email_checked.deliver_now
     end
 
-    render :check_email
+    render :template => "service/password_resets/check_email"
   end
 
   def update
-    p PasswordResetForm.new(password_params)
-    p @user.update(password_params)
+    PasswordResetForm.new(password_params)
     if @user.update(password_params)
       @user.destroy_reset_digest!
       redirect_to new_session_path
@@ -33,8 +32,6 @@ class Service::PasswordResetsController < Service::ApplicationController
   end
 
   def edit; end
-
-  def check_email; end
 
   private
 
