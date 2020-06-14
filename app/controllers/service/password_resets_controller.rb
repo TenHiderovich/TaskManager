@@ -52,7 +52,8 @@ class Service::PasswordResetsController < Service::ApplicationController
   end
 
   def valid_user
-    unless @user&.authenticated_reset_token?(params[:id])
+    reset_token = params[:id]
+    unless @user&.authenticated_reset_token?(reset_token)
       redirect_to :new_service_password_reset
     end
   end
