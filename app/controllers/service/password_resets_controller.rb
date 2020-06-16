@@ -2,7 +2,7 @@
 
 class Service::PasswordResetsController < Service::ApplicationController
   before_action :get_user,         only: %i[edit update]
-  before_action :valid_user,       only: %i[edit update]
+  before_action :check_tokent,       only: %i[edit update]
   before_action :check_expiration, only: %i[edit update]
 
   def new
@@ -18,7 +18,7 @@ class Service::PasswordResetsController < Service::ApplicationController
       UserMailer.with({ user: @user }).email_checked.deliver_now
     end
 
-    render :template => "service/password_resets/check_email"
+    render :template => "service/password_resets/check"
   end
 
   def update
@@ -48,7 +48,7 @@ class Service::PasswordResetsController < Service::ApplicationController
     @user = User.find_by(email: params[:email])
   end
 
-  def valid_user
+  def check_tokent
     reset_token = params[:id]
     unless @user&.authenticated_reset_token?(reset_token)
       redirect_to :new_service_password_reset

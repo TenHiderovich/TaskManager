@@ -55,7 +55,6 @@ end
 
 gem 'active_model_serializers'
 gem 'bcrypt', '~> 3.1.7'
-gem 'bullet', group: 'development'
 gem 'coveralls', require: false
 gem 'js-routes'
 gem 'kaminari'
@@ -73,6 +72,7 @@ gem 'webpacker-react'
 group :development, :test do
   gem 'factory_bot_rails'
   gem 'rubocop'
+  gem 'bullet'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

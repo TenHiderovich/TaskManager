@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 module TokenHelper
+  TIME_VALIDITY_TOKEN = 24
+
   def new_reset_token
-    self.reset_token = loop do
+    loop do
       token = SecureRandom.urlsafe_base64
       break token unless User.exists?(reset_digest: token)
     end
@@ -15,12 +17,11 @@ module TokenHelper
   end
 
   def password_reset_expired?
-    time_validity_token = 24
-    reset_sent_at < time_validity_token.hours.ago
+    reset_sent_at < TIME_VALIDITY_TOKEN.hours.ago
   end
 
   def create_reset_digest!
-    new_reset_token
+    self.reset_token = new_reset_token
     update(reset_digest: digest(reset_token), reset_sent_at: Time.zone.now)
   end
 

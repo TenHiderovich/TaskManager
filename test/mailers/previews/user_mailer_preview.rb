@@ -28,7 +28,7 @@ class UserMailerPreview < ActionMailer::Preview
 
   def email_checked
     user = User.first
-    user.reset_token = user.new_token
+    user.reset_token = user.new_reset_token
     params = { user: user }
 
     UserMailer.with(params).email_checked
