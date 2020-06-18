@@ -2,10 +2,7 @@ class SendTaskDestroyNotificationJob < ApplicationJob
   sidekiq_options queue: :mailers
   sidekiq_throttle_as :mailer
 
-  def perform(task_id)
-    task = Task.find_by(id: task_id)
-    return if task.blank?
-
-    UserMailer.with(user: task.author, task: task).task_destroyed.deliver_now
+  def perform(task_id, email)
+    UserMailer.with(task_id: task_id, email: email).task_destroyed.deliver_now
   end
 end

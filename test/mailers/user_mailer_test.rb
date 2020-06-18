@@ -38,7 +38,7 @@ class UserMailerTest < ActionMailer::TestCase
   test 'task destroyed' do
     user = create(:user)
     task = create(:task, author: user)
-    params = { user: user, task: task }
+    params = { email: user.email, task_id: task.id }
     email = UserMailer.with(params).task_destroyed
 
     assert_emails 1 do
@@ -62,7 +62,7 @@ class UserMailerTest < ActionMailer::TestCase
     assert_emails 1 do
       email.deliver_now
     end
-
+    
     assert_equal ['noreply@taskmanager.com'], email.from
     assert_equal [user.email], email.to
     assert_equal 'password reseted', email.subject
