@@ -14,6 +14,6 @@ class EmailForm
   end
 
   def user_valid?
-    user.blank?
+    !user.blank?
   end
 end
