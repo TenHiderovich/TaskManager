@@ -19,8 +19,6 @@ gem 'webpacker', '~> 4.0'
 gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
-# Use Active Model has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -64,10 +62,17 @@ gem 'slim-rails'
 gem 'state_machines'
 gem 'state_machines-activerecord'
 gem 'webpacker-react'
+<<<<<<< HEAD
+=======
+gem 'bullet', group: 'development'
+gem 'rollbar'
+gem 'newrelic_rpm'
+>>>>>>> b2fabee... Setting up uniqueness
 
 gem 'sidekiq'
 gem 'sidekiq-failures'
 gem 'sidekiq-throttled'
+gem 'sidekiq-unique-jobs', '~> 6.0.13'
 
 group :development, :test do
   gem 'factory_bot_rails'
