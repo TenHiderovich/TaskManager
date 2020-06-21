@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20_200_607_223_134) do
     t.string 'type'
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
-    t.string 'reset_digest'
+    t.string 'reset_digest', unique: true
     t.datetime 'reset_sent_at'
   end
 end

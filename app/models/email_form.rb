@@ -13,7 +13,7 @@ class EmailForm
     User.find_by(email: email)
   end
 
-  def user_valid?
+  def has_user?
     !user.blank?
   end
 end

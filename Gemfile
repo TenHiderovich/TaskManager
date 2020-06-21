@@ -47,11 +47,12 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+  gem 'coveralls', require: false
+  gem 'simplecov', require: false
 end
 
 gem 'active_model_serializers'
 gem 'bcrypt', '~> 3.1.7'
-gem 'coveralls', require: false
 gem 'js-routes'
 gem 'kaminari'
 gem 'newrelic_rpm'
@@ -59,7 +60,6 @@ gem 'ransack', github: 'activerecord-hackery/ransack'
 gem 'responders'
 gem 'rollbar'
 gem 'simple_form'
-gem 'simplecov', require: false
 gem 'slim-rails'
 gem 'state_machines'
 gem 'state_machines-activerecord'

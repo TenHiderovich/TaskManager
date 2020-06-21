@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   end
 
   namespace :service do
-    resources :password_resets
+    resources :passwords_resets
   end
 
   namespace :admin do

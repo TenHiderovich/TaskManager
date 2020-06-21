@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-class Service::PasswordResetsControllerTest < ActionController::TestCase
+class Service::PasswordsResetsControllerTest < ActionController::TestCase
   test 'should get new' do
     get :new
     assert_response :success
