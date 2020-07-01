@@ -16,7 +16,7 @@ class Service::PasswordsResetsController < Service::ApplicationController
   def create
     @email = EmailForm.new(email_params)
 
-    if @email.has_user?
+    if @email.is_valid?
       @user = @email.user
       @user.create_reset_digest!
       UserMailer.with({ user: @user }).email_checked.deliver_now
