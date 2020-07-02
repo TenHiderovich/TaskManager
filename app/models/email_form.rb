@@ -2,18 +2,18 @@
 
 class EmailForm
   include ActiveModel::Model
-
+  
   attr_accessor(
     :email
   )
 
-  validates :email, presence: true, format: { with: /@/ }
+  validates :email, presence: true, format: { with: /@/ }, if: :has_user?
 
   def user
     User.find_by(email: email)
   end
 
-  def is_valid?
+  def has_user?
     !user.blank?
   end
 end
