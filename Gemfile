@@ -35,6 +35,8 @@ end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
+  gem 'letter_opener'
+  gem 'letter_opener_web'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'web-console', '>= 3.3.0'
 end
@@ -45,28 +47,28 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+  gem 'coveralls', require: false
+  gem 'simplecov', require: false
 end
 
 gem 'active_model_serializers'
 gem 'bcrypt', '~> 3.1.7'
 gem 'js-routes'
 gem 'kaminari'
+gem 'newrelic_rpm'
 gem 'ransack', github: 'activerecord-hackery/ransack'
 gem 'responders'
+gem 'rollbar'
 gem 'simple_form'
 gem 'slim-rails'
 gem 'state_machines'
 gem 'state_machines-activerecord'
 gem 'webpacker-react'
-gem 'simplecov', require: false
-gem 'coveralls', require: false
-gem 'bullet', group: 'development'
-gem 'rollbar'
-gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'factory_bot_rails'
   gem 'rubocop'
+  gem 'bullet'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

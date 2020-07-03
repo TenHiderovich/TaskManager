@@ -3,6 +3,8 @@
 class User < ApplicationRecord
   has_secure_password
 
+  attr_accessor :reset_token
+
   has_many :my_tasks, class_name: 'Task', foreign_key: :author_id
   has_many :assigned_tasks, class_name: 'Task', foreign_key: :assignee_id
 

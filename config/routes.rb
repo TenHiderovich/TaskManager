@@ -6,11 +6,17 @@ Rails.application.routes.draw do
       get 'tasks/show'
     end
   end
+
   root to: 'web/boards#show'
+
   scope module: :web do
     resource :board, only: :show
     resource :session, only: %i[new create destroy]
     resources :developers, only: %i[new create]
+  end
+
+  namespace :service do
+    resources :passwords_resets
   end
 
   namespace :admin do
@@ -23,4 +29,6 @@ Rails.application.routes.draw do
       resources :users, only: %i[index show]
     end
   end
+
+  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 end

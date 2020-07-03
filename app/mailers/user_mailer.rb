@@ -1,0 +1,30 @@
+# frozen_string_literal: true
+
+class UserMailer < ApplicationMailer
+  def task_created
+    user = params[:user]
+    @task = params[:task]
+
+    mail(to: user.email, subject: 'New Task Created')
+  end
+
+  def task_updated
+    user = params[:user]
+    @task = params[:task]
+
+    mail(to: user.email, subject: "Task #{@task.id} Updated")
+  end
+
+  def task_destroyed
+    user = params[:user]
+    @task = params[:task]
+
+    mail(to: user.email, subject: "Task #{@task.id} Destroyed")
+  end
+
+  def email_checked
+    @user = params[:user]
+
+    mail(to: @user.email, subject: 'password reseted')
+  end
+end

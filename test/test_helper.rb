@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'coveralls'
 Coveralls.wear!
 
@@ -9,7 +10,7 @@ ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 require 'rails/test_help'
 require 'coveralls'
-require 'simplecov' 
+require 'simplecov'
 # SimpleCov.start
 # Coveralls.wear!
 Coveralls.wear!('rails')
@@ -28,4 +29,5 @@ class ActiveSupport::TestCase
   # Add more helper methods to be used by all tests here...
   include FactoryBot::Syntax::Methods
   include AuthHelper
+  include ActionMailer::TestHelper
 end
