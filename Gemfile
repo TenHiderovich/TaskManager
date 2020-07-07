@@ -44,9 +44,9 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
-  gem 'webdrivers'
   gem 'coveralls', require: false
   gem 'simplecov', require: false
+  gem 'webdrivers'
 end
 
 gem 'active_model_serializers'
@@ -69,9 +69,9 @@ gem 'sidekiq-throttled'
 gem 'sidekiq-unique-jobs', '~> 6.0.13'
 
 group :development, :test do
+  gem 'bullet'
   gem 'factory_bot_rails'
   gem 'rubocop'
-  gem 'bullet'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

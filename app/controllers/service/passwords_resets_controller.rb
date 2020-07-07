@@ -2,7 +2,7 @@
 
 class Service::PasswordsResetsController < Service::ApplicationController
   before_action :get_user,         only: %i[edit update]
-  before_action :check_token,       only: %i[edit update]
+  before_action :check_token, only: %i[edit update]
   before_action :check_expiration, only: %i[edit update]
 
   def show; end

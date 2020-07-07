@@ -25,9 +25,7 @@ class Api::V1::TasksController < Api::V1::ApplicationController
     task = current_user.my_tasks.new(task_params)
     task.author = current_user
 
-    if task.save
-      SendTaskCreateNotificationJob.perform_async(task.id)
-    end
+    SendTaskCreateNotificationJob.perform_async(task.id) if task.save
 
     respond_with(task, serializer: TaskSerializer, location: nil)
   end
@@ -48,9 +46,7 @@ class Api::V1::TasksController < Api::V1::ApplicationController
     author = task.author
     email = author.email
 
-    if task.destroy
-      SendTaskDestroyNotificationJob.perform_async(task.id, email)
-    end
+    SendTaskDestroyNotificationJob.perform_async(task.id, email) if task.destroy
 
     respond_with(task)
   end

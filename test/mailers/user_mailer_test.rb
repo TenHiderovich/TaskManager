@@ -62,7 +62,7 @@ class UserMailerTest < ActionMailer::TestCase
     assert_emails 1 do
       email.deliver_now
     end
-    
+
     assert_equal ['noreply@taskmanager.com'], email.from
     assert_equal [user.email], email.to
     assert_equal 'password reseted', email.subject
