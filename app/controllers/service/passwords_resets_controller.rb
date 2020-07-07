@@ -19,7 +19,7 @@ class Service::PasswordsResetsController < Service::ApplicationController
     if @email.valid?
       @user = @email.user
       @user.create_reset_digest!
-      SendEmailCheckedNotificationJob.perform_async(@user.id)
+      SendEmailCheckedNotificationJob.perform_async(@user.id, @user.reset_token)
     end
 
     render :show

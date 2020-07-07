@@ -62,12 +62,6 @@ gem 'slim-rails'
 gem 'state_machines'
 gem 'state_machines-activerecord'
 gem 'webpacker-react'
-<<<<<<< HEAD
-=======
-gem 'bullet', group: 'development'
-gem 'rollbar'
-gem 'newrelic_rpm'
->>>>>>> b2fabee... Setting up uniqueness
 
 gem 'sidekiq'
 gem 'sidekiq-failures'
