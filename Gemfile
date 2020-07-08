@@ -19,8 +19,6 @@ gem 'webpacker', '~> 4.0'
 gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
-# Use Active Model has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -46,9 +44,9 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
-  gem 'webdrivers'
   gem 'coveralls', require: false
   gem 'simplecov', require: false
+  gem 'webdrivers'
 end
 
 gem 'active_model_serializers'
@@ -65,10 +63,15 @@ gem 'state_machines'
 gem 'state_machines-activerecord'
 gem 'webpacker-react'
 
+gem 'sidekiq'
+gem 'sidekiq-failures'
+gem 'sidekiq-throttled'
+gem 'sidekiq-unique-jobs', '~> 6.0.13'
+
 group :development, :test do
+  gem 'bullet'
   gem 'factory_bot_rails'
   gem 'rubocop'
-  gem 'bullet'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

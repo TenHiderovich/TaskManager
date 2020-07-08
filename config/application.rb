@@ -20,5 +20,7 @@ module TaskManager
     config.assets.paths << Rails.root.join('node_modules')
 
     config.action_mailer.default_url_options = { host: 'localhost:3000' }
+
+    config.active_job.queue_adapter = :sidekiq
   end
 end

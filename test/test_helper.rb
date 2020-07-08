@@ -9,15 +9,7 @@ SimpleCov.start
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 require 'rails/test_help'
-require 'coveralls'
-require 'simplecov'
-# SimpleCov.start
-# Coveralls.wear!
-Coveralls.wear!('rails')
-# SimpleCov.formatter = Coveralls::SimpleCov::Formatter
-# SimpleCov.start do
-#   add_filter 'app/secrets'
-# end
+require 'sidekiq/testing'
 
 class ActiveSupport::TestCase
   # Run tests in parallel with specified workers
@@ -30,4 +22,6 @@ class ActiveSupport::TestCase
   include FactoryBot::Syntax::Methods
   include AuthHelper
   include ActionMailer::TestHelper
+
+  Sidekiq::Testing.inline!
 end

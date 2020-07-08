@@ -2,7 +2,7 @@
 
 class Service::PasswordsResetsController < Service::ApplicationController
   before_action :get_user,         only: %i[edit update]
-  before_action :check_token,       only: %i[edit update]
+  before_action :check_token, only: %i[edit update]
   before_action :check_expiration, only: %i[edit update]
 
   def show; end
@@ -19,7 +19,7 @@ class Service::PasswordsResetsController < Service::ApplicationController
     if @email.valid?
       @user = @email.user
       @user.create_reset_digest!
-      UserMailer.with({ user: @user }).email_checked.deliver_now
+      SendEmailCheckedNotificationJob.perform_async(@user.id, @user.reset_token)
     end
 
     render :show

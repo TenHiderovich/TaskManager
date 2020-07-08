@@ -18,3 +18,9 @@ lint-fix:
 
 tests:
 	docker-compose run --rm web bash -c "rails test"
+
+b-install:
+	docker-compose run --rm web bash -c "bundle install"
+
+rails-c:
+	docker-compose run --rm web bash -c "rails c"
