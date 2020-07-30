@@ -25,7 +25,7 @@ const tasksSlice = createSlice({
     loadColumnSuccess(state, { payload }) {
       const { items, meta, columnId } = payload;
       const column = state.board.columns.find(propEq('id', columnId));
-
+      
       state.board = changeColumn(state.board, column, {
         cards: items,
         meta,
@@ -80,7 +80,9 @@ export const useTasksActions = () => {
   };
 
   const loadMoreTasks = (state, page = 1, perPage = 10) => {
-
+    console.log(tasksSlice);
+    
+    loadColumn(state, page, perPage);
   };
 
   const сardDragEnd = (task, source, destination) => {
@@ -109,49 +111,3 @@ export const useTasksActions = () => {
     loadMoreTasks,
   };
 };
-
-// const loadColumnMore = (state, page = 1, perPage = 10) => {
-//   loadColumn(state, page, perPage).then(({ data }) => {
-//     setBoardCards((prevState) => {
-//       const { cards } = prevState[state];
-//       return {
-//         ...prevState,
-//         [state]: {
-//           cards: [...cards, ...data.items],
-//           meta: data.meta,
-//         },
-//       };
-//     });
-//   });
-// };
-
-// const handleCardDragEnd = (task, source, destination) => {
-//   const transition = task.transitions.find(({ to }) => destination.toColumnId === to);
-//   if (!transition) {
-//     return null;
-//   }
-
-//   return TasksRepository.update(task.id, { task: { stateEvent: transition.event } })
-//     .then(() => {
-//       loadColumnInitial(destination.toColumnId);
-//       loadColumnInitial(source.fromColumnId);
-//     })
-//     .catch((error) => {
-//       alert(`Move failed! ${error.message}`);
-//     });
-// };
-
-// const handleTaskUpdate = (params) => {
-//   const attributes = TaskForm.attributesToSubmit(params);
-//   return TasksRepository.update(params.id, attributes).then(({ data: { task } }) => {
-//     loadColumnInitial(task.state);
-//     handleClose();
-//   });
-// };
-
-// const handleTaskDestroy = (task) => {
-//   return TasksRepository.destroy(task.id).then(() => {
-//     loadColumnInitial(task.state);
-//     handleClose();
-//   });
-// };

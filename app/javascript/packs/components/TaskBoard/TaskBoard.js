@@ -48,8 +48,8 @@ const TaskBoard = (props) => {
     return taskCreate(params);
   };
 
-  const loadColumnMore = () => {
-    loadMoreTasks();
+  const loadColumnMore = (...data) => {
+    loadMoreTasks(...data);
   };
 
   const handleCardDragEnd = (task, source, destination) => {
