@@ -27,8 +27,19 @@ const tasksSlice = createSlice({
       const column = state.board.columns.find(propEq('id', columnId));
       
       state.board = changeColumn(state.board, column, {
-        cards: items,
-        meta,
+        cards: [ ...column.cards, ...items],
+        meta: column.meta,
+      });
+
+      return state;
+    },
+    loadColumnMore(state, { payload }) {
+      const { items, meta, columnId } = payload;
+      const column = state.board.columns.find(propEq('id', columnId));
+      
+      state.board = changeColumn(state.board, column, {
+        cards: [ ...column.cards, ...items],
+        meta: column.meta,
       });
 
       return state;
@@ -36,7 +47,7 @@ const tasksSlice = createSlice({
   },
 });
 
-const { loadColumnSuccess } = tasksSlice.actions;
+const { loadColumnSuccess, loadColumnMore } = tasksSlice.actions;
 
 export default tasksSlice.reducer;
 
@@ -80,9 +91,13 @@ export const useTasksActions = () => {
   };
 
   const loadMoreTasks = (state, page = 1, perPage = 10) => {
-    console.log(tasksSlice);
-    
-    loadColumn(state, page, perPage);
+    TasksRepository.index({
+      q: { stateEq: state },
+      page,
+      perPage,
+    }).then(({ data }) => {
+      dispatch(loadColumnMore({ ...data, columnId: state }));
+    });
   };
 
   const сardDragEnd = (task, source, destination) => {
